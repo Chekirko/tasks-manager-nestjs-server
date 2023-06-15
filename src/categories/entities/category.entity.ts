@@ -22,9 +22,4 @@ export class Category {
   @Field()
   @CreateDateColumn()
   dateCreated: Date;
-
-  @Field()
-  @Column()
-  @ManyToOne(() => User, (user) => user.id)
-  userId: User;
 }

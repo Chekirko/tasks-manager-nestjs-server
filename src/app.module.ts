@@ -17,6 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
       sortSchema: true,
+      useGlobalPrefix: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

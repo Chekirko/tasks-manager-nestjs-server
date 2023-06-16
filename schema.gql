@@ -49,18 +49,15 @@ type Mutation {
   removeAuth(id: Int!): Auth!
   removeCategory(id: Int!): Category!
   removeTask(id: Int!): Task!
-  removeUser(id: Float!): Float!
   updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   auth(id: Int!): Auth!
   categories: [Category!]!
   category(id: Int!): Category!
-  findAll: [User!]!
   findOne(id: Float!): User!
   task(id: Int!): Task!
   tasks: [Task!]!
@@ -91,12 +88,6 @@ input UpdateTaskInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
-}
-
-input UpdateUserInput {
-  email: String
-  id: Float!
-  password: String
 }
 
 type User {

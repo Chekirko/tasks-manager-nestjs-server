@@ -1,7 +1,38 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Category } from 'src/categories/entities/category.entity';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+@Entity('tasks')
 @ObjectType()
 export class Task {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => ID)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  @Column()
+  name: string;
+
+  @Field()
+  @Column()
+  dateStart: Date;
+
+  @Field()
+  @Column()
+  dateEnd: Date;
+
+  @ManyToOne(() => Category, (category) => category.tasks)
+  @Field(() => Category)
+  categories: Category;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  categoryId: number;
 }

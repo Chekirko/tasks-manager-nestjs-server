@@ -8,8 +8,12 @@ type Auth {
 }
 
 type Category {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  dateCreated: DateTime!
+  id: ID!
+  name: String!
+  tasks: [Task!]
+  user: User
+  userId: Float
 }
 
 input CreateAuthInput {
@@ -31,6 +35,11 @@ input CreateUserInput {
   email: String!
   password: String!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Mutation {
   createAuth(createAuthInput: CreateAuthInput!): Auth!
@@ -58,8 +67,12 @@ type Query {
 }
 
 type Task {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  categories: Category!
+  categoryId: Float
+  dateEnd: DateTime!
+  dateStart: DateTime!
+  id: ID!
+  name: String!
 }
 
 input UpdateAuthInput {
@@ -87,6 +100,7 @@ input UpdateUserInput {
 }
 
 type User {
+  categories: Category
   email: String!
   id: ID!
   password: String!

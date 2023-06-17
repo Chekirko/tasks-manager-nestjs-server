@@ -2,7 +2,8 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
-import { UsePipes, ValidationPipe } from '@nestjs/common';
+import { UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 // import { UpdateUserInput } from './dto/update-user.input';
 
 @Resolver('User')
@@ -17,10 +18,11 @@ export class UsersResolver {
     return await this.usersService.create(createUserInput);
   }
 
-  // @Query(() => [User])
-  // async findAll(): Promise<User[]> {
-  //   return await this.usersService.findAll();
-  // }
+  @Query(() => [User])
+  @UseGuards(JwtAuthGuard)
+  async findAll(): Promise<User[]> {
+    return await this.usersService.findAll();
+  }
 
   // @Query(() => User)
   // async findOne(@Args('id') id: number): Promise<User> {

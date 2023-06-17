@@ -55,6 +55,7 @@ type Mutation {
 type Query {
   categories: [Category!]!
   category(id: Int!): Category!
+  findAll: [User!]!
   task(id: Int!): Task!
   tasks: [Task!]!
 }

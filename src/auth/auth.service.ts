@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import * as argon2 from 'argon2';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -14,5 +15,12 @@ export class AuthService {
       return result;
     }
     throw new BadRequestException('Email or password are incorrect');
+  }
+
+  async login(user: User) {
+    return {
+      access_token: 'jwt', //TODO: realize it!
+      user,
+    };
   }
 }

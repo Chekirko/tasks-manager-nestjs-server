@@ -31,10 +31,21 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createTask(createTaskInput: CreateTaskInput!): Task!
   createUser(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
   removeCategory(id: Int!): Category!
   removeTask(id: Int!): Task!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!

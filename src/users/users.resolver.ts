@@ -22,10 +22,10 @@ export class UsersResolver {
   //   return await this.usersService.findAll();
   // }
 
-  @Query(() => User)
-  async findOne(@Args('id') id: number): Promise<User> {
-    return await this.usersService.findOne(id);
-  }
+  // @Query(() => User)
+  // async findOne(@Args('id') id: number): Promise<User> {
+  //   return await this.usersService.findOne(id);
+  // }
 
   // @Mutation(() => User)
   // async updateUser(

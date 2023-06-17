@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type Category {
   dateCreated: DateTime!
   id: ID!
@@ -14,11 +9,6 @@ type Category {
   tasks: [Task!]
   user: User
   userId: Float
-}
-
-input CreateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
 }
 
 input CreateCategoryInput {
@@ -42,23 +32,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createTask(createTaskInput: CreateTaskInput!): Task!
   createUser(createUserInput: CreateUserInput!): User!
-  removeAuth(id: Int!): Auth!
   removeCategory(id: Int!): Category!
   removeTask(id: Int!): Task!
-  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
 }
 
 type Query {
-  auth(id: Int!): Auth!
   categories: [Category!]!
   category(id: Int!): Category!
-  findOne(id: Float!): User!
   task(id: Int!): Task!
   tasks: [Task!]!
 }
@@ -70,12 +55,6 @@ type Task {
   dateStart: DateTime!
   id: ID!
   name: String!
-}
-
-input UpdateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input UpdateCategoryInput {

@@ -22,11 +22,11 @@ export class Task {
 
   @Field()
   @Column()
-  dateStart: Date;
+  dateStart: string;
 
   @Field()
   @Column()
-  dateEnd: Date;
+  dateEnd: string;
 
   @ManyToOne(() => Category, (category) => category.tasks)
   @Field(() => Category)

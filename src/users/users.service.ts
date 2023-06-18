@@ -36,17 +36,4 @@ export class UsersService {
       where: { email },
     });
   }
-
-  // async update(updateUserInput: UpdateUserInput): Promise<User> {
-  //   await this.userRepository.update(
-  //     { id: updateUserInput.id },
-  //     { ...updateUserInput },
-  //   );
-  //   return await this.findOne(updateUserInput.id);
-  // }
-
-  // async remove(id: number): Promise<number> {
-  //   await this.userRepository.delete({ id });
-  //   return id;
-  // }
 }

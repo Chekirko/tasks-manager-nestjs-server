@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
 import { Task } from './entities/task.entity';
@@ -11,8 +11,26 @@ export class TasksService {
     @InjectRepository(Task)
     private readonly tasksRepository: Repository<Task>,
   ) {}
-  create(createTaskInput: CreateTaskInput) {
-    return 'This action adds a new task';
+
+  async create(createTaskInput: CreateTaskInput) {
+    const existTask = await this.tasksRepository.find({
+      where: {
+        name: createTaskInput.name,
+        categoryId: createTaskInput.categoryId,
+      },
+    });
+
+    if (existTask.length) {
+      throw new BadRequestException('Task with the same name already exist');
+    }
+
+    const newTask = await this.tasksRepository.save({
+      name: createTaskInput.name,
+      dateStart: createTaskInput.dateStart,
+      dateEnd: createTaskInput.dateEnd,
+      categoryId: createTaskInput.categoryId,
+    });
+    return newTask;
   }
 
   async findAll(id: number) {
@@ -23,15 +41,22 @@ export class TasksService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async findOne(id: number) {
+    return await this.tasksRepository.findOne({
+      where: { id },
+    });
   }
 
-  update(id: number, updateTaskInput: UpdateTaskInput) {
-    return `This action updates a #${id} task`;
+  async update(id: number, updateTaskInput: UpdateTaskInput): Promise<Task> {
+    await this.tasksRepository.update(
+      { id: id },
+      { id: id, ...updateTaskInput },
+    );
+    return await this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} task`;
+  async remove(id: number): Promise<number> {
+    await this.tasksRepository.delete({ id });
+    return id;
   }
 }

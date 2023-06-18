@@ -16,8 +16,10 @@ input CreateCategoryInput {
 }
 
 input CreateTaskInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  categoryId: Int!
+  dateEnd: String!
+  dateStart: String!
+  name: String!
 }
 
 input CreateUserInput {
@@ -48,7 +50,7 @@ type Mutation {
   removeCategory(id: Int!): Category!
   removeTask(id: Int!): Task!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  updateTask(id: Float!, updateTaskInput: UpdateTaskInput!): Task!
 }
 
 type Query {
@@ -63,8 +65,8 @@ type Query {
 type Task {
   categories: Category!
   categoryId: Float
-  dateEnd: DateTime!
-  dateStart: DateTime!
+  dateEnd: String!
+  dateStart: String!
   id: ID!
   name: String!
 }
@@ -75,9 +77,10 @@ input UpdateCategoryInput {
 }
 
 input UpdateTaskInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  categoryId: Int!
+  dateEnd: String
+  dateStart: String
+  name: String
 }
 
 type User {

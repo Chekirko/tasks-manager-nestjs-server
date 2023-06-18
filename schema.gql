@@ -12,8 +12,7 @@ type Category {
 }
 
 input CreateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input CreateTaskInput {
@@ -54,10 +53,11 @@ type Mutation {
 
 type Query {
   categories: [Category!]!
-  category(id: Int!): Category!
+  category(id: Float!): Category!
   findAll: [User!]!
+  findOne(email: String!): User!
   task(id: Int!): Task!
-  tasks: [Task!]!
+  tasks(id: Int!): [Task!]!
 }
 
 type Task {
@@ -70,9 +70,8 @@ type Task {
 }
 
 input UpdateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
+  name: String!
 }
 
 input UpdateTaskInput {
@@ -82,9 +81,10 @@ input UpdateTaskInput {
 }
 
 type User {
-  categories: Category
+  categories: [Category!]
   email: String!
   id: ID!
   password: String!
+  tasks: [Task!]!
   user: Float!
 }

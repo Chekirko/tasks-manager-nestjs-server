@@ -1,15 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
+import { Task } from './entities/task.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TasksService {
+  constructor(
+    @InjectRepository(Task)
+    private readonly tasksRepository: Repository<Task>,
+  ) {}
   create(createTaskInput: CreateTaskInput) {
     return 'This action adds a new task';
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  async findAll(id: number) {
+    return await this.tasksRepository.find({
+      where: {
+        categoryId: id,
+      },
+    });
   }
 
   findOne(id: number) {

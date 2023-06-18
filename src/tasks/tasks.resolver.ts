@@ -14,8 +14,8 @@ export class TasksResolver {
   }
 
   @Query(() => [Task], { name: 'tasks' })
-  findAll() {
-    return this.tasksService.findAll();
+  async findAll(@Args('id', { type: () => Int }) id: number) {
+    return await this.tasksService.findAll(id);
   }
 
   @Query(() => Task, { name: 'task' })

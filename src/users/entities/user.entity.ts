@@ -1,6 +1,12 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Category } from 'src/categories/entities/category.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum userRoles {
   user,
@@ -26,6 +32,7 @@ export class User {
   user: userRoles.user;
 
   @OneToMany(() => Category, (category) => category.user)
-  @Field(() => Category, { nullable: true })
+  @JoinTable()
+  @Field(() => [Category], { nullable: true })
   categories: Category[];
 }

@@ -33,9 +33,7 @@ export class UsersService {
 
   async findOne(email: string) {
     return await this.userRepository.findOne({
-      where: {
-        email,
-      },
+      where: { email },
     });
   }
 

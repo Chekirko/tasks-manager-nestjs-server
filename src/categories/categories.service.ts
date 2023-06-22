@@ -56,7 +56,8 @@ export class CategoriesService {
   }
 
   async remove(id: number) {
+    const deletedCategory = await this.findOne(id);
     await this.categoriesRepository.delete({ id });
-    return id;
+    return deletedCategory;
   }
 }

@@ -64,6 +64,7 @@ export class CategoriesResolver {
   }
 
   @Mutation(() => Category)
+  @UseGuards(JwtAuthGuard)
   removeCategory(@Args('id', { type: () => Int }) id: number) {
     return this.categoriesService.remove(id);
   }

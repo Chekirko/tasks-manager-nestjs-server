@@ -56,16 +56,4 @@ export class UsersResolver {
   async tasks(@Parent() category: Category) {
     return await this.taskService.findAll(category.id);
   }
-
-  // @Mutation(() => User)
-  // async updateUser(
-  //   @Args('updateUserInput') updateUserInput: UpdateUserInput,
-  // ): Promise<User> {
-  //   return await this.usersService.update(updateUserInput);
-  // }
-
-  // @Mutation(() => Number)
-  // async removeUser(@Args('id') id: number): Promise<number> {
-  //   return await this.usersService.remove(id);
-  // }
 }
